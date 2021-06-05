@@ -62,7 +62,7 @@ document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 var citycoords = new Object();
 citycoords["boston"] = [42.31901259509799, -71.09256387480792, 11, ['<33', '33-38', '38-43', '43-47', '47-53']];
 citycoords['baltimore'] = [39.31123765013042, -76.61840913262718, 11, ['<40', '40-45', '45-49', '49-53', '53-57']];
-citycoords['dc'] = [38.91534357808685, -77.02192823438375, 11, ['<39', '39-46', '46-52', '52-56', '56-59']];
+citycoords['washington'] = [38.91534357808685, -77.02192823438375, 11, ['<39', '39-46', '46-52', '52-56', '56-59']];
 citycoords['seattle'] = [47.61555186154012, -122.3435799256088, 11, ['<28', '28-36', '36-44', '44-50', '50-56']];
 citycoords['san diego'] = [32.84018393677258, -117.15608171628791, 11, ['<40', '40-46', '46-52', '52-57', '57-66']];
 citycoords['philadelphia'] = [39.98675663514595, -75.15313882264648, 11, ['<39', '39-45', '45-50', '50-53', '53-58']];
@@ -247,7 +247,7 @@ function switchLayer(layer) {
 
   var city = document.getElementById("city").value;
 
-  medium_cities = ["atlanta", "boston", "baltimore", "chicago", "dallas", "dc", "miami", "philadelphia", "san francisco", "seattle", "san diego"];
+  medium_cities = ["atlanta", "boston", "baltimore", "chicago", "dallas", "washington", "miami", "philadelphia", "san francisco", "seattle", "san diego"];
   big_cities = ['new york city', 'los angeles', 'houston']
   
   if (layerId == 'satellite') {
@@ -281,7 +281,7 @@ function updateMap(city) {
   map.setCenter([lon, lat]);
   map.setZoom(zoom);
   
-  medium_cities = ["atlanta", "boston", "baltimore", "chicago", "dallas", "dc", "miami", "philadelphia", "san francisco", "seattle", "san diego"];
+  medium_cities = ["atlanta", "boston", "baltimore", "chicago", "dallas", "washington", "miami", "philadelphia", "san francisco", "seattle", "san diego"];
   big_cities = ['new york city', 'los angeles', 'houston']
   //judge whether to use large style or the medium city style layer
   if (medium_cities.includes(city, 0)) {
