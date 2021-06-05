@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>US outdoor heat exposure</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    
+
+<!--     <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.css"
+      rel="stylesheet"
+    /> -->
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="icon" type="img/png" href="img/favicon.png">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+    <script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
+    <script href="js/.js"></script>
+    
+    <style>
+        .lorem {
+            font-style: italic;
+            color: #AAA;
+        }
+
+        .index_image{
+          opacity: 1;
+          filter: alpha(opacity=100);
+        }
+        .index_image:hover
+        {
+          opacity: 0.35;
+          filter: alpha(opacity=10);
+        }
+
+    </style>
+
+
+  <body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger text-uppercase m-0" href="#page-top">Urban Heatexpo</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">Map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#projects">Analysis</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#signup">Publication</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container d-flex h-100 align-items-center" style="width: 100% margin: auto;">
+        <div class="mx-auto text-center" style="margin: auto;">
+          <h1 class="text-uppercase-white" style="opacity:1; color:yellow">Urban Outdoor Heat Exposure</h1>
+          <h5 style="color:white; font-weight:250; opacity: 0.8; width: 100%; margin:auto;">The finest resolution urban outdoor heat exposure maps in major US cities</h5>
+          <br></br>
+          <a href="#about" class="btn btn-primary js-scroll-trigger" style="margin:auto;">Start Exploring!</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" style=" background: -webkit-gradient(linear, left top, left bottom, from(#161616), color-stop(75%, rgba(22, 22, 22, 0.9)), to(rgba(22, 22, 22, 0.8)));
+  background: linear-gradient(to bottom, #161616 0%, rgba(22, 22, 22, 0.9) 75%, rgba(22, 22, 22, 0.8) 100%);">
+      <div class="container" style="width: 100%;">
+        <div class="row" style="width: 100%; margin: auto;">
+          <div class="row" style="width: 100%; margin: auto;">
+            <div style="font-size:12px; color: white; margin: auto;">The heat exposure is colored by mean radiant temperature. <b>Pan</b> and <b>zoom</b> to see heat maps in different cities. <b>Search your address</b></div>
+          </div>
+
+          <div class="row" style="width: 100%; margin: auto;">
+              <div class="dropdown my-menu" >       
+                <select id="city" onchange="leaveChange(this)">
+                  <option value="atlanta">Atlanta</option>
+                  <option value="baltimore">Baltimore</option>
+                  <option value="boston">Boston</option>
+                  <option value="chicago">Chicago</option>
+                  <option value="dallas">Dallas</option>
+                  <option value="houston">Houson</option>
+                  <option value="los angeles">Los Angeles</option>
+                  <option value="miami">Miami</option>
+                  <option value="new york city">New York City</option>
+                  <option value="philadelphia" selected>Philadelphia</option>
+                  <option value="san francisco">San Francisco</option>
+                  <option value="seattle">Seattle</option>
+                  <option value="san diego">San Diego</option>
+                  <option value="dc">Washington, DC</option>
+                </select>
+              </div>
+          </div>
+          
+
+          <div class="main"  id="map" style="width: 100%; height: 600px; margin:auto"> 
+            <div id="menu" style="color: black; height: 40px; width: 20%">
+              <!-- See a list of Mapbox-hosted public styles at -->
+              <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->
+              <input id="satellite" class="radio" type="radio" name="rtoggle" value="light">
+              <label for="satellite">satellite</label>
+              <input id="heat" type="radio" name="rtoggle" value="dark" checked>
+              <label for="heat">heat map</label>
+
+              <div id="geocoder" class="geocoder"></div>
+
+              <div class="flex-parent viewport-full relative scroll-hidden">
+                <div class="flex-child w-full w240-mm absolute static-mm left bottom">
+                  <div
+                    class="
+                      flex-parent flex-parent--column
+                      viewport-third
+                      h-full-mm
+                      hmax-full
+                      bg-white
+                      scroll-auto
+                    "
+                  >
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="map-overlay">
+                  <div class="map-overlay-inner">
+                      <h5>Mean Radiant Temperature (°C)</h5>
+                      <div id="legend" class="legend">
+                          <nav id = 'legendbrick' class='legend clearfix'>
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      </div>
+      
+    </section>
+
+
+    <section id="projects" class="projects-section bg-light">
+      <div class="container" style="color: black">
+        <div class="row text-center">
+          <p></p>
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('boston')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer">
+                <img class="card-img-top" src="img/mrt0/boston0.png" alt="" style="width: 240px; height: 240px">
+                <img class="card-img-top" src="img/histogram/mrt0_boston.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Boston</h4>
+
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>43.7 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>7.4 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('sanfrancisco')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/sanfrancisco.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_san_francisco.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">San Francisco</h4>
+                
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>45.6 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>7.4 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('dc')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/dc.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_dc.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Washington, DC</h4>
+
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>52.2 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>7.7 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="container" style="color: black">
+        <div class="row text-center">
+          <p></p>
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('chicago')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/chicago.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_chicago.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Chicago</h4>
+
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>51.0 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>6.4 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('seattle')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/seattle.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_seattle.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Seattle</h4>
+
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>46.0 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>10.3 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('baltimore')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/baltimore.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_baltimore.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Baltimore</h4>
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>50.0 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>6.0 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container" style="color: black">
+        <div class="row text-center">
+          <p></p>
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('miami')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/miami.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_miami.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Miami</h4>
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>50.5 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>7.4 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('atlanta')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/atlanta.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_atlanta.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Atlanta</h4>
+
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>47.0 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>10.3 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('newyork')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/nyc.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_new_york.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">New York City</h4>
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>46.4 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>8.0 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container" style="color: black">
+        <div class="row text-center">
+          <p></p>
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('la')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/la.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_la.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Los Angeles</h4>
+
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>57.5 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>7.4 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about" onclick="fly2cityHeatMap('houston')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/houston.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_houston.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Houston</h4>
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>55.0 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>8.9 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('dallas')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/dallas.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_dallas.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Dallas</h4>
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>56.6 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>8.7 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="container" style="color: black">
+        <div class="row text-center">
+          <p></p>
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('sandiego')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/sandiego.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_sandiego.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">San Diego</h4>
+
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>56.4 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>6.7 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 mb-4">
+            <div class="card h-100" style = "border: 0px">
+              <a href="#about"  onclick="fly2cityHeatMap('philadelphia')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer"><img class="card-img-top" src="img/mrt0/philadelphia.png" alt="" style="width: 240px; height: 240px"><img class="card-img-top" src="img/histogram/mrt0_philadelphia.png" alt="" style="width: 300px; height: 200px">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Philadelphia</h4>
+
+                <table style="width:75%; margin-left:auto;margin-right:auto;">
+                  <tr>
+                    <td>Mean value: </td>
+                    <td>50.9 <span>&#176;C</span></td>
+                  </tr>
+                  <tr>
+                    <td>Std. Deviation</td>
+                    <td>5.9 <span>&#176;C</span></td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section bg-light">
+      <div class="container">
+        <!-- Featured Project Row -->
+        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+          <div class="col-xl-4 col-lg-7">
+            <h5 style="color:black">Understand the heat exposure</h5>
+          </div>
+
+          <div class="col-xl-8 col-lg-5">
+            <div class="featured-text text-center text-lg-left">
+              <p align="justify" class="text-black-50 mb-0" >The increasingly frequent and intense extreme heat events in large U.S. cities cause more climate-related mortalities than any other hazardous weather event. In the context of global warming, heat waves are supposed to be more frequent and intense in many cities. In addition, the urban heat island effect is believed to further exacerbate the mortality increase caused by heat stress in cities. The summer heatwaves would also increase the deaths and illnesses caused by infectious disease and air pollution. While a lot of attention has been paid on the urban-rural temperature gradients, the heat intensity also varies from neighborhood to neighborhood within the city. Understanding the fine level spatial distribution of the human heat stress level would be helpful for developing strategies to minimize the negative impacts of extreme heat in cities and building more equitable and resilient cities in terms of thermal comfort. This project firstly conducted a large-scale human outdoor heat exposure modeling at the city level and mapped the distribution of the averaged mean radiant temperature (Tmrt) in hot summer using urban microclimate modeling based on fine level digital city models and hourly meteorological data. Different from the widely used ambient temperature and remote sensing-based land surface temperature, the Tmrt is more reasonable to represent human body energy balance and indicate human outdoor heat exposure in the summer with consideration of the air temperature, spatial-temporal distribution of shade, terrestrial radiation, humidity, etc.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+          <div class="col-xl-4 col-lg-7">
+            <h5 style="color:black">Methodology</h5>
+          </div>
+
+          <div class="col-xl-8 col-lg-5">
+            <div class="featured-text text-center text-lg-left">
+              <p align="justify" class="text-black-50 mb-0" >
+
+                  The ground surface temperature estimated from remotely sensed thermal imageries has been widely used to map the intensity of the heat at large scales. However, the land surface temperature derived from remotely sensed imageries cannot fully represent human actual outdoor heat exposure. This is because human heat exposure is also impacted by other factors, such as shade, wind speed, humidity, while those factors are usually not covered in the remotely sensed imageries, which usually indicate the surface temperature of the ground, building roofs, and the top of tree canopies. Although the remotely sensed imagery can estimate the land surface temperature of a large geographical area rapidly, however, it is still not able to detect the temporal variations of the heat exposure on a daily level. In addition, the remote sensing-derived land surface temperature usually cannot show the fine-level spatial variations of human outdoor heat exposure across neighborhoods because of the relatively coarse resolution of the thermal imageries.
+                  
+              <br></br>
+              <img class="img-fluid mb-3 mb-lg-0" src="img/solweig.png" width="90%" alt="">
+              <br></br>
+              The urban microclimate modeling based on high resolution 3D urban models and meteorological data makes it possible to examine how people are exposed to heat stress at a fine spatio-temporal level. By simulating how the solar radiation reaching the ground, it is possible to compute the mean radiant temperature (Tmrt), which is the total net short and long-wave radiation a human exposed to the surrounding environment and has the strongest influence on human energy balance. The urban microclimate modeling also makes it possible to examine the impacts of urban canyons and urban landscapes on the human heat exposure, which would benefit urban design practices for urban heat management. Therefore, this project applied urban microclimate modeling to calculate and map the spatial distribution of the average Tmrt at hour-level from 10am to 2pm from July 1st to July 31st of one typical year across neighborhoods in major US cities to indicate human outdoor heat exposure. The high-resolution 3D urban model generated from LiDAR and high-resolution aerial images together with the meteorological data were used as the input to represent the urban geometry and local climate context for modeling human outdoor heat exposure, respectively. 
+            </div>
+          </div>
+        </div>
+
+
+    </section>
+
+    <!-- Signup Section -->
+    <section id="signup" class="signup-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto text-center">
+            <h3 style="color:white"> Read the complete research published in <i>Sustainable Cities and Society</i>.</h3>
+            <br></br>
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S2210670721003504" target="_blank"><img src="" width="20%" height="auto" margin-left= "auto" margin-right="auto" alt=""> </img></a>
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S2210670721003504" target="_blank"><input type="button" class="btn btn-primary mx-auto" value="Full Paper"></a>
+            <br></br>
+            <a style="color:white" href="https://www.sciencedirect.com/science/article/abs/pii/S2210670721003504" target="_blank">
+            For citation: Xiaojiang Li, 2021, Investigating the spatial distribution of resident’s outdoor heat exposure across neighborhoods of Philadelphia, Pennsylvania using urban microclimate modeling, Sustainable Cities and Society, 72,103066. </a>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id = "contact" class="contact-section bg-black">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <!-- <i class="fas fa-map-marked-alt text-primary mb-2"></i> -->
+                <h4 class="text-uppercase m-0" style="color:black">Authors</h4>
+                <hr class="my-4" style="margin: auto;">
+                <div class="small text-black-50">
+                <a align="justify" href="https://marroninstitute.nyu.edu/people/yuan-lai" target="_blank"><strong>Xiaojiang Li</strong></a> is a tenure-track assistant professor at Department of Geography and Urban Studies, Temple University. He was a Postdoctoral Fellow at MIT Senseable City Lab. His research focuses on developing and applying geospatial analyses and data-driven approaches in the domain of urban studies. He has proposed to use Google Street View for urban environmental studies and developed the Treepedia project, which aims to map street greenery for cities around the world. He is also working on using human trace data to study human activities and investigate the connection between urban environments and human activities.
+                <br></br>
+                <br></br>      
+                Data visualization and web developement by Xiaojiang Li.
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+               <h4 class="text-uppercase m-0" style="color:black">Urban Spatial Analytics Lab</h4>  
+                <hr class="my-4" style="margin: auto;">
+                 <a href="http://www.urbanintelligencelab.org/" target="_blank"></a>
+                <div class="small text-black-50">
+                  <a href="http://www.urbanspatial.info/" target="_blank">The Urban Spatial Analytic Lab is led by Prof. Xiaojiang Li. Our work is grounded in solving real-world urban sustainablility problems, using DATA, SCIENCE, and DESIGN. Our team aims to provide a comprehensive understanding of the interactions between urban built environment, natural systems, and human systems to engage in long-term sustainable development and build resilience to climate change through data-driven approaches and planning.</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <h4 class="text-uppercase m-0" style="color:black">Contact Us</h4>  
+                <hr class="my-4" style="margin: auto;">
+                
+                <i class="fas fa-envelope"></i>
+                <div class="small text-black-50"><a>Email: xiaojiang.li@temple.edu</a></div>
+                
+                <a href="https://twitter.com/GIS_jiang" target="_blank">
+                  <br>
+                </a>
+                <div class="small text-black-50">
+                  <a href="https://twitter.com/GIS_jiang" target="_blank">
+                    <img src="img/twitter.png" witdh="30" height="30" alt="Italian Trulli">
+                    Follow us on Twitter!
+                  </a>
+                </div>
+                  
+                <br></br>
+
+                <h4 class="text-uppercase m-0" style="color:black">Other Work</h4>  
+                <hr class="my-4" style="margin: auto;">
+                <div class="small text-black-50">
+                <a href="http://www.urbanspatial.info/" target="_blank">http://www.urbanspatial.info/</a>
+                <br></br>
+     
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black small text-center text-white-50">
+      <div class="container">
+        Copyright &copy; Urban Spatial Analytics Lab 2021
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/grayscale.min.js"></script>
+    <script src="js/map.js"></script>
+    
+  </head>
+  </body>
+</html>
