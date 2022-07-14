@@ -29,7 +29,7 @@ th {
   z-index: 1;
   width: 70px%;
   height: 60px;
-  left: 120%;
+  left: 100%;
   margin-left: 75%;
   top: 10px;
 }
@@ -43,7 +43,6 @@ th {
     margin-bottom: 10px;
 }
 
-
 /*.mapboxgl-marker{position:absolute;top:0;left:0;will-change:transform;opacity:1;transition:opacity .2s}  
 */
 
@@ -52,19 +51,16 @@ th {
     color: #ffff;
     /*display: block;*/
     /*position: absolute;*/
-    /*width: 100%;*/
+    /* width: 180%; */
     top: 0px;
     position: absolute;
     /*right: 0;*/
-    right: -880px;
+    right: -850px;
     padding: 5px;
 }
 
-
-
 .legend-key {
-      z-index: 4;
-
+    z-index: 4;
     /*display: inline-block;*/
     border-radius: 5%;
     width: 10px;
@@ -82,11 +78,17 @@ th {
   float:left;
   height:15px;
   width:20%;
-  text-align:center;
-  font-size:13px;
   color:white;
-  }
+}
 
+  .legend label {
+    /* text-align: left; */
+    width:20%;
+    /* left: 16px; */
+    right: 10px;
+    font-size:12px;
+
+  }
 
 
 /*.legend .bar {

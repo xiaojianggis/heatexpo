@@ -132,14 +132,18 @@
           
 
           <div class="main"  id="map" style="width: 100%; height: 600px; margin:auto"> 
-            <div id="menu" style="color: black; height: 40px; width: 20%">
+            <div id="menu" style="color: black; height: 40px; width: 22%">
               <!-- See a list of Mapbox-hosted public styles at -->
               <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->
               <input id="satellite" class="radio" type="radio" name="rtoggle" value="light">
-              <label for="satellite">satellite</label>
-              <input id="heat" type="radio" name="rtoggle" value="dark" checked>
-              <label for="heat">heat map</label>
-              
+              <label for="satellite">Satellite</label>
+              <input id="map" class="radio" type="radio" name="rtoggle" value="light">
+              <label for="map">Map</label>
+              <input id="mrt" type="radio" name="rtoggle" value="dark">
+              <label for="mrt">MRT</label>
+              <input id="utci" type="radio" name="rtoggle" value="dark" checked>
+              <label for="utci">UTCI</label>
+
               <div id="geocoder" class="geocoder"></div>
 
               <div class="flex-parent viewport-full relative scroll-hidden">
@@ -161,28 +165,27 @@
 
               <div class="map-overlay">
                   <div class="map-overlay-inner">
-                      <h5>Mean Radiant Temperature (°C)</h5>
+                      <h5 id="heattime">Universal Thermal Climate Index (°C)</h5>
                       <div id="legend" class="legend">
                           <nav id = 'legendbrick' class='legend clearfix'>
                       </div>
                   </div>
               </div>
-
             </div>
           </div>
 
+          
         </div>
       </div>
 
       </div>
-      
     </section>
-
 
     <section id="projects" class="projects-section bg-light">
       <div class="container" style="color: black">
+        <h3 style="left: auto;">Mean Radiant Temperature</h3>
+        <hr>
         <div class="row text-center">
-          <p></p>
           <div class="col-lg-4 col-md-4 mb-4">
             <div class="card h-100" style = "border: 0px">
               <a href="#about"  onclick="fly2cityHeatMap('boston')" class = "index_image js-scroll-trigger" target="_blank" rel="noopener noreferrer">
@@ -534,7 +537,7 @@
 
           <div class="col-xl-8 col-lg-5">
             <div class="featured-text text-center text-lg-left">
-              <p align="justify" class="text-black-50 mb-0" >The increasingly frequent and intense extreme heat events in large U.S. cities cause more climate-related mortalities than any other hazardous weather event. In the context of global warming, heat waves are supposed to be more frequent and intense in many cities. In addition, the urban heat island effect is believed to further exacerbate the mortality increase caused by heat stress in cities. The summer heatwaves would also increase the deaths and illnesses caused by infectious disease and air pollution. While a lot of attention has been paid on the urban-rural temperature gradients, the heat intensity also varies from neighborhood to neighborhood within the city. Understanding the fine level spatial distribution of the human heat stress level would be helpful for developing strategies to minimize the negative impacts of extreme heat in cities and building more equitable and resilient cities in terms of thermal comfort. This project firstly conducted a large-scale human outdoor heat exposure modeling at the city level and mapped the distribution of the averaged mean radiant temperature (Tmrt) in hot summer using urban microclimate modeling based on fine level digital city models and hourly meteorological data. Different from the widely used ambient temperature and remote sensing-based land surface temperature, the Tmrt is more reasonable to represent human body energy balance and indicate human outdoor heat exposure in the summer with consideration of the air temperature, spatial-temporal distribution of shade, terrestrial radiation, humidity, etc.
+              <p align="justify" class="text-black-50 mb-0" >The increasingly frequent and intense extreme heat events in large U.S. cities <b>cause more climate-related mortalities than any other hazardous weather event</b>. In the context of global warming, heat waves are supposed to be more frequent and intense in many cities. In addition, the urban heat island effect is believed to further exacerbate the mortality increase caused by heat stress in cities. The summer heatwaves would also increase the deaths and illnesses caused by infectious disease and air pollution. While a lot of attention has been paid on the urban-rural temperature gradients, the heat intensity also varies from neighborhood to neighborhood within the city. Understanding the fine level spatial distribution of the human heat stress level would be helpful for developing strategies to minimize the negative impacts of extreme heat in cities and building more equitable and resilient cities in terms of thermal comfort. This project firstly conducted a large-scale human outdoor heat exposure modeling at the city level and mapped the distribution of the averaged mean radiant temperature (Tmrt) and Universal Thermal Climate Index (UTCI) in hot summer using urban microclimate modeling based on fine level digital city models and hourly meteorological data. Different from the widely used ambient temperature and remote sensing-based land surface temperature, the Tmrt and UTCI are more reasonable to represent human body energy balance and indicate human outdoor heat exposure in the summer with consideration of the air temperature, spatial-temporal distribution of shade, terrestrial radiation, humidity, etc.
               </p>
             </div>
           </div>
@@ -551,12 +554,12 @@
             <div class="featured-text text-center text-lg-left">
               <p align="justify" class="text-black-50 mb-0" >
 
-                  The ground surface temperature estimated from remotely sensed thermal imageries has been widely used to map the intensity of the heat at large scales. However, the land surface temperature derived from remotely sensed imageries cannot fully represent human actual outdoor heat exposure. This is because human heat exposure is also impacted by other factors, such as shade, wind speed, humidity, while those factors are usually not covered in the remotely sensed imageries, which usually indicate the surface temperature of the ground, building roofs, and the top of tree canopies. Although the remotely sensed imagery can estimate the land surface temperature of a large geographical area rapidly, however, it is still not able to detect the temporal variations of the heat exposure on a daily level. In addition, the remote sensing-derived land surface temperature usually cannot show the fine-level spatial variations of human outdoor heat exposure across neighborhoods because of the relatively coarse resolution of the thermal imageries.
+                  The ground surface temperature estimated from remotely sensed thermal imageries has been widely used to map the intensity of the heat at large scales. However, the land surface temperature derived from remotely sensed imageries cannot fully represent human actual outdoor heat exposure. This is because human heat exposure is also impacted by other factors, such as shade, wind speed, humidity, while those factors are usually not covered in the remotely sensed imageries. The ground surface temperature derived from remotely sensed thermal imageries usually indicate the surface temperature of the ground, building roofs, and the top of tree canopies. <b>However, nobody live on top of tree canopies or building roofs. Therefore, the remotely sensed surface temperature cannot fully indicate the heat stress that humans exposed to</b>. Although the remotely sensed imagery can estimate the land surface temperature of a large geographical area rapidly, however, it is still not able to detect the temporal variations of the heat exposure on a daily level. In addition, the remote sensing-derived land surface temperature usually cannot show the fine-level spatial variations of human outdoor heat exposure across neighborhoods because of the relatively coarse resolution of the thermal imageries.
                   
               <br></br>
-              <img class="img-fluid mb-3 mb-lg-0" src="img/solweig.png" width="90%" alt="">
+              <img class="img-fluid mb-3 mb-lg-0" src="img/solweig2.png" width="90%" alt="">
               <br></br>
-              The urban microclimate modeling based on high resolution 3D urban models and meteorological data makes it possible to examine how people are exposed to heat stress at a fine spatio-temporal level. By simulating how the solar radiation reaching the ground, it is possible to compute the mean radiant temperature (Tmrt), which is the total net short and long-wave radiation a human exposed to the surrounding environment and has the strongest influence on human energy balance. The urban microclimate modeling also makes it possible to examine the impacts of urban canyons and urban landscapes on the human heat exposure, which would benefit urban design practices for urban heat management. Therefore, this project applied urban microclimate modeling to calculate and map the spatial distribution of the average Tmrt at hour-level from 10am to 2pm from July 1st to July 31st of one typical year across neighborhoods in major US cities to indicate human outdoor heat exposure. The high-resolution 3D urban model generated from LiDAR and high-resolution aerial images together with the meteorological data were used as the input to represent the urban geometry and local climate context for modeling human outdoor heat exposure, respectively. 
+              The urban microclimate modeling based on high resolution 3D urban models and meteorological data makes it possible to examine how people are exposed to heat stress at a fine spatio-temporal level. By simulating how the solar radiation reaching the ground, it is possible to compute the mean radiant temperature (Tmrt), which is the total net short and long-wave radiation a human exposed to the surrounding environment and has the strongest influence on human energy balance. The urban microclimate modeling also makes it possible to examine the impacts of urban canyons and urban landscapes on the human heat exposure, which would benefit urban design practices for urban heat management. Therefore, this project applied urban microclimate modeling to calculate and map the spatial distribution of the average Tmrt at hour-level from 8am to 5pm in the hottest month of one typical year across neighborhoods in major US cities to indicate human outdoor heat exposure. <b>For San Francisco, Seattle, and San Diego, the hottest month is September, and the hottest month for other cities is July. </b></b>The high-resolution 3D urban model generated from LiDAR and high-resolution aerial images together with the meteorological data were used as the input to represent the urban geometry and local climate context for modeling human outdoor heat exposure, respectively. 
             </div>
           </div>
         </div>
