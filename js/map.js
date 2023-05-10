@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoieGlhb2ppYW5nZ2lzIiwiYSI6ImNrNnI5ZzJmcDAxNWszbW9mMjV1bGxsb3oifQ.O2EHW7BWQ3-qjo_u7ddqNA';
+// mapboxgl.accessToken = 'pk.eyJ1IjoieGlhb2ppYW5nZ2lzIiwiYSI6ImNrNnI5ZzJmcDAxNWszbW9mMjV1bGxsb3oifQ.O2EHW7BWQ3-qjo_u7ddqNA';
 mapboxgl.accessToken = 'pk.eyJ1IjoieGlhb2ppYW5nZ2lzIiwiYSI6ImNqeXN5dDB0dzAxN2wzb3RjZDd0dThrOXoifQ.-teQ6oB1SznwZKZNpLTE-A';
 
 var map = new mapboxgl.Map({
@@ -11,7 +11,7 @@ var map = new mapboxgl.Map({
   minZoom: 10
 });
 
-var medium_cities = ["atlanta", "boston", "baltimore", "chicago",  "washington", "miami", "philadelphia", "san francisco", "seattle", "san diego"];
+var medium_cities = ["atlanta", "boston", "baltimore", "chicago",  "washington", "miami", "nashville", "philadelphia", "san francisco", "seattle", "san diego"];
 var big_cities = ['new york city', "dallas", 'los angeles', 'houston']
 
 
@@ -97,6 +97,7 @@ citycoords['seattle'] = [47.61555186154012, -122.3435799256088, 11, ['<27', '27-
 citycoords['san diego'] = [32.84018393677258, -117.15608171628791, 11, ['<31', '31-39', '39-46', '46-51', '51+'], ['<25', '25-27', '27-29', '29-30', '30+']];
 citycoords['philadelphia'] = [39.98675663514595, -75.15313882264648, 11, ['<30', '30-36', '36-42', '42-47', '47+'], ['<26', '26-27', '27-29', '29-30', '30+']];
 citycoords['miami'] = [25.777476201525072, -80.21834080668762, 11, ['<34', '34-40', '40-46', '46-52', '52+'], ['<30', '30-31', '31-33', '33-34', '34+']];
+citycoords['nashville'] = [36.16613542187021, -86.78318605040803, 10, ['<35', '35-40', '40-48', '48-55', '55+'], ['<32', '32-34', '34-36', '36-37', '37+']];
 citycoords['los angeles'] = [34.07483852023736, -118.32892140164431, 9, ['<32', '32-40', '40-49', '49-55', '55+'], ['<27', '27-29', '29-31', '31-32', '32+']];
 citycoords['san francisco'] = [37.76532315179079, -122.44391726879564, 11, ['<26', '26-32', '32-38', '38-44', '44+'], ['<21', '21-22', '22-24', '24-25', '25+']];
 citycoords['chicago'] = [41.854891400317754, -87.67040202741047, 10, ['<29', '29-35', '35-43', '43-49', '49+'], ['<23', '23-25', '25-27', '27-28', '28+']];
@@ -361,7 +362,7 @@ function updateMap(city) {
       map.setStyle('mapbox://styles/xiaojianggis/cl5g3rbjx001h14pax52fv1ub');
     }
   }
-
+  
   document.getElementById('city').value = city;
   // addLegend(city);
 }

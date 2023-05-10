@@ -71,6 +71,9 @@ th {
     font-size: 26px
 }
 
+.card-img-top {
+  margin-bottom: 15px;
+}
 
 .legend label,
 .legend span {
