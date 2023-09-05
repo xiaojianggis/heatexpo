@@ -328,7 +328,7 @@ function updateMap(city) {
   console.log(citycoords[city]);
   console.log(city=='philadelphia'); 
   updateLegendTitle()
-
+  
   var layerList = document.getElementById('menu');
   var inputs = layerList.getElementsByTagName('input');
 
@@ -362,7 +362,7 @@ function updateMap(city) {
       map.setStyle('mapbox://styles/xiaojianggis/cl5g3rbjx001h14pax52fv1ub');
     }
   }
-  
+
   document.getElementById('city').value = city;
   // addLegend(city);
 }
