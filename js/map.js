@@ -30,6 +30,7 @@ let cityDict = {
   "miami": {'state': "fl"},
   "nashville": {'state': "tn"},
   "philadelphia": {'state': "pa"},
+  "phoenix": {'state': "az"},
   "seattle": {'state': "wa"},
   "newyorkcity": {'state': "ny"},
   "austin": {'state': "tx"}, 
@@ -108,6 +109,8 @@ citycoords['nashville'] = [36.16613542187021, -86.78318605040803, 10, ['<35', '3
 citycoords['losangeles'] = [34.07483852023736, -118.32892140164431, 9, ['<32', '32-40', '40-49', '49-55', '55+'], ['<27', '27-29', '29-31', '31-32', '32+']];
 citycoords['sanfrancisco'] = [37.76532315179079, -122.44391726879564, 11, ['<26', '26-32', '32-38', '38-44', '44+'], ['<21', '21-22', '22-24', '24-25', '25+']];
 citycoords['sacramento'] = [38.5696215274427, -121.47651995652465, 11, ['<33', '33-45', '45-53', '53-60', '60+'], ['<32', '32-34', '34-36', '36-38', '38+']];
+
+citycoords['phoenix'] = [33.48999554234958, -112.07471206951674, 11, ['<41', '41-51', '51-58', '58-63', '63+'], ['<39', '39-42', '42-43', '43-44', '44+']];
 
 citycoords['chicago'] = [41.854891400317754, -87.67040202741047, 10, ['<30', '30-37', '37-44', '44-49', '49+'], ['<24', '24-26', '26-28', '28-29', '29+']];
 citycoords['atlanta'] = [33.7637757252088, -84.42633326861935, 11, ['<35', '35-40', '40-47', '47-53', '53+'], ['<32', '32-33', '33-35', '35-37', '37+']];
@@ -399,6 +402,9 @@ function mrtUpdateLayer(city) {
     case "pa":
       map.setStyle("mapbox://styles/xiaojianggis/clmshivpc05bn01qb5c3i91so");
       break;
+    case "az":
+      map.setStyle("mapbox://styles/xiaojianggis/clnv3u259001901ozc0xs42ev");
+      break;
     default:
       map.setStyle('mapbox://styles/xiaojianggis/cl5k9w2oc005o14n9ahtd7q3h');
   }
@@ -443,7 +449,10 @@ function utciUpdateLayer(city) {
       break;
     case "pa":
       map.setStyle("mapbox://styles/xiaojianggis/clmshh3fx05ba01qicbxxhklf");
-      // break;
+      break;
+    case "az":
+      map.setStyle("mapbox://styles/xiaojianggis/clnv3u7xi001101p64858dm35");
+      break;
     default:
       map.setStyle('mapbox://styles/xiaojianggis/ckphr143t2wsk18s4lui33b5l');
   }
